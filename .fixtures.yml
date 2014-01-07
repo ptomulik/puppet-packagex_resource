@@ -1,5 +1,3 @@
 fixtures:
-  repositories:
-    vash: "git://github.com/ptomulik/puppet-vash.git"
   symlinks:
     packagex: "#{source_dir}"
