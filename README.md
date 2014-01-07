@@ -1,8 +1,6 @@
 # ptomulik-packagex\_resource
 
 [![Build Status](https://travis-ci.org/ptomulik/puppet-packagex_resource.png?branch=master)](https://travis-ci.org/ptomulik/puppet-packagex_resource)
-[![Coverage Status](https://coveralls.io/repos/ptomulik/puppet-packagex_resource/badge.png?branch=master)](https://coveralls.io/r/ptomulik/puppet-packagex_resource?branch=master)
-[![Code Climate](https://codeclimate.com/github/ptomulik/puppet-packagex_resource.png)](https://codeclimate.com/github/ptomulik/puppet-packagex_resource)
 
 #### Table of Contents
 

@@ -1,4 +1,5 @@
 2014-01-07 Pawel Tomulik <ptomulik@meil.pw.edu.pl>
+  * removed coveralls and code climage from project
   * removed vash module from .fixtures.yml
   * release 0.1.1
   * added workaround for travis-ci issue #1793

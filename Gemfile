@@ -6,9 +6,6 @@ group :development, :test do
   gem 'puppetlabs_spec_helper',  :require => false                              
   gem 'rspec-system-puppet'
   gem 'rspec-system-serverspec', :require => false                              
-  if RUBY_VERSION >= '1.9'
-    gem 'coveralls', :require => false
-  end
 end                                                                             
 
 if puppetversion = ENV['PUPPET_GEM_VERSION']                                    
