@@ -1,0 +1,8 @@
+name    'ptomulik-packagex_resource'
+version '0.2.1'
+source 'git://github.com/ptomulik/puppet-packagex_resource.git'
+author 'ptomulik'
+license 'Apache License, Version 2.0'
+summary 'Extended puppet package resource'
+description 'This module extends the original puppet package resource'
+project_page 'https://gitbub.com/ptomulik/puppet-packagex_resource'
