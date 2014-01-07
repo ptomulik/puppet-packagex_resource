@@ -56,10 +56,16 @@ module Puppet
       passed to the installer command."
     feature :uninstall_options, "The provider accepts options to be
       passed to the uninstaller command."
+# PACKAGEX_EXTRA_START
     feature :build_options, "The provider accepts build_options to be ensured
       for the given package. The meaning and format of the options is defined
       by provider.",
       :methods => [:build_options_insync?, :build_options, :build_options=]
+# PACKAGEX_EXTRA_END
+    feature :package_settings, "The provider accepts package_settings to be
+      ensured for the given package. The meaning and format of these settins is
+      provider-specific.",
+      :methods => [:package_settings_insync?, :package_settings, :package_settings=]
 
 
     ensurable do
@@ -243,12 +249,17 @@ module Puppet
         end
       end
     end
-
+# PACKAGEX_EXTRA_START
     newproperty(:build_options, :required_features=>:build_options) do
-      desc "Build options. The definition of build options is provider
-        specific. In general, these are certain properties which alter contents
-        of a package being installed. An example of build options are the
-        FreeBSD ports options.
+      desc "This is an alias for package_settings. Currently we look for
+        better (more generic) name for these options and our temporary choice
+        is `package_settings`. Once the new name gets established, we'll
+        deprecate `build_options` and switch to a new name. You must not use
+        build_options and package_settings simultaneously.
+
+        The definition of build options is provider specific. In general, these
+        are certain properties which alter contents of a package being
+        installed. An example of build options are the FreeBSD ports options.
 
         The build_options attribute is a property. This means that the options
         can be enforced during package installation and verified/retrieved
@@ -310,6 +321,78 @@ module Puppet
       def change_to_s(currentvalue, newvalue)
         if provider.respond_to?(:build_options_change_to_s)
           provider.build_options_change_to_s(currentvalue, newvalue)
+        else
+          super
+        end
+      end
+    end
+# PACKAGEX_EXTRA_END
+    
+    newproperty(:package_settings, :required_features=>:package_settings) do
+      desc "Package settins. The definition of package settings is provider
+        specific. In general, these are certain properties which alter contents
+        of a package being installed. An example of package settings are the
+        FreeBSD ports options.
+
+        The package_settings attribute is a property. This means that the options
+        can be enforced during package installation and verified/retrieved
+        for packages that are already installed.
+
+        For example, portsx provider on FreeBSD implements the package settings
+        as port build options (the ones you normally set with make config).
+        There is a simple usage example for this particular provider:
+
+            packagex { 'www/apache22':
+              package_settings => { 'SUEXEC' => false }
+            }
+
+        The above manifest ensures, that apache22 is compiled without SUEXEC
+        module.
+
+        Despite the package_settings are provider specific, the typical
+        behavior, when you change package's package_settings in  your manifest,
+        is to reinstall package with new settings.
+        "
+
+      validate do |value|
+        if provider.respond_to?(:package_settings_validate)
+          provider.package_settings_validate(value)
+        else
+          super
+        end
+      end
+
+      munge do |value|
+        if provider.respond_to?(:package_settings_munge)
+          provider.package_settings_munge(value)
+        else
+          super
+        end
+      end
+
+      def insync?(is)
+        provider.package_settings_insync?(should, is)
+      end
+
+      def should_to_s(newvalue)
+        if provider.respond_to?(:package_settings_should_to_s)
+          provider.package_settings_should_to_s(should, newvalue)
+        else
+          super
+        end
+      end
+
+      def is_to_s(currentvalue)
+        if provider.respond_to?(:package_settings_is_to_s)
+          provider.package_settings_is_to_s(should, currentvalue)
+        else
+          super
+        end
+      end
+
+      def change_to_s(currentvalue, newvalue)
+        if provider.respond_to?(:package_settings_change_to_s)
+          provider.package_settings_change_to_s(currentvalue, newvalue)
         else
           super
         end

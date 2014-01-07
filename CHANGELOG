@@ -1,4 +1,5 @@
 2014-01-07 Pawel Tomulik <ptomulik@meil.pw.edu.pl>
+  * added package_settings feature and property
   * fixed names in .script/build-module.sh
   * release 0.1.2
   * removed coveralls and code climage from project
