@@ -24,6 +24,12 @@ removed at all without a notice. Do not use in production.
 
 ## Overview
 
+**NOTE**: I'm going to change the name `build_options` property to something
+more general. It'll be probably `package_settings`. The `build_options` will be
+present for some time (one or two releases) together with the new property to
+give you some time to adjust your puppet manifests. The `build_options` will be
+deprecated in next release.
+
 This is an enhanced version of puppet *package* resource. Providers for this
 resource type are developed as separate modules. Currently I've developed
 [portsx](https://github.com/ptomulik/puppet-packagex_portsx) provider, which is
