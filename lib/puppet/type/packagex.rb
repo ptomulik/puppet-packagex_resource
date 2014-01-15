@@ -283,6 +283,7 @@ module Puppet
         "
 
       validate do |value|
+        Puppet.warning('build_options are deprecated, use package_settings instead')
         if provider.respond_to?(:build_options_validate)
           provider.build_options_validate(value)
         else
