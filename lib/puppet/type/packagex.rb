@@ -63,7 +63,7 @@ module Puppet
       :methods => [:build_options_insync?, :build_options, :build_options=]
 # PACKAGEX_EXTRA_END
     feature :package_settings, "The provider accepts package_settings to be
-      ensured for the given package. The meaning and format of these settins is
+      ensured for the given package. The meaning and format of these settings is
       provider-specific.",
       :methods => [:package_settings_insync?, :package_settings, :package_settings=]
 
@@ -278,7 +278,7 @@ module Puppet
         module.
 
         Despite the build_options are provider specific, the typical behavior,
-        when you change package's build_options in  your manifest, is to
+        when you change package's build_options in your manifest, is to
         rebuild/reinstall package with new options.
         "
 
@@ -329,7 +329,7 @@ module Puppet
 # PACKAGEX_EXTRA_END
     
     newproperty(:package_settings, :required_features=>:package_settings) do
-      desc "Package settins. The definition of package settings is provider
+      desc "Package settings. The definition of package settings is provider
         specific. In general, these are certain properties which alter contents
         of a package being installed. An example of package settings are the
         FreeBSD ports options.
