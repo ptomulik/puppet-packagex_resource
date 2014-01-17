@@ -24,11 +24,9 @@ removed at all without a notice. Do not use in production.
 
 ## Overview
 
-**NOTE**: I'm going to change the name `build_options` property to something
-more general. It'll be probably `package_settings`. The `build_options` will be
-present for some time (one or two releases) together with the new property to
-give you some time to adjust your puppet manifests. The `build_options` will be
-deprecated in next release.
+**NOTE**: The `build_options` property is being renamed to `package_settings`. 
+Currently it's a transition period so you may use one or the other. The
+`build_options` will be removed in next major release.
 
 This is an enhanced version of puppet *package* resource. Providers for this
 resource type are developed as separate modules. Currently I've developed
@@ -40,16 +38,18 @@ an enhanced and bug-fixed version of puppet's *ports* provider.
 The module re-implements puppet package resource adding some crucial features
 to it and its providers. Currently new features include:
 
-  * *build_options* - a property (ensurable) that allows defining additional
+  * *package_settings* - a property (ensurable) that allows defining additional
     options for package.
+  * *build_options* - is an "alias" for *package_settings*; don't use both at
+    the same time for a given resource instance!
 
-The *build_options* are independent of the well known *install_options* and
-*uninstall_options*. The definition of *build_options* is generally
+The *package_settings* are independent of the well known *install_options* and
+*uninstall_options*. The definition of *package_settings* is generally
 provider-specific. Whereas *install_options* and *uninstall_options* are just
-parameters (not ensurable), the *build_options* is a fully featured property,
-that is the options may be ensured on a package. See
-[portsx](https://github.com/ptomulik/puppet-packagex_portsx) provider for a
-concrete example of build options implementation.
+parameters (not ensurable), the *package_settings* is a fully featured
+property, that is the settings may be ensured on a package. See
+[portsx](https://github.com/ptomulik/puppet-packagex_portsx) provider for an
+example implementation of package settings.
 
 ## Setup
 
